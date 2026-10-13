@@ -7,5 +7,7 @@ with open("level_1_character.json", "r") as file:
     data["attributes"]["constitution"] = data["attributes"]["constitution"] + 1
     data["skills"].append("Survival")
     data["weapons"].append("Silver Dagger")
-    
+
     print(data)
+with open("level_2_character.json", "w") as file:
+    json.dump(data, file, indent=4)
