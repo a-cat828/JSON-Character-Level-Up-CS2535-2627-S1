@@ -16,8 +16,11 @@ while go_go == "yes":
                 data["skills"].append(skills)
                 go = input("you what to add a weapon y/n ")
                 if go == "y":
-                    weapon = input("add what weapon? ")
-                    data["weapon"].append(weapon)
+                    weapon = input("add what weapon?")
+                    data["weapons"].append(weapon)
+            with open(f"level_{data['level']}_character.json", "w") as file:
+                json.dump(data, file, indent=4)
+            print("invalid input")
             go_go = "no"
     except FileNotFoundError:
         try:
@@ -36,14 +39,12 @@ while go_go == "yes":
                         go = input("you what to add a weapon y/n ")
                         if go == "y":
                             weapon = input("add what weapon? ")
-                            data["weapon"].append(weapon)
+                            data["weapons"].append(weapon)
+                with open(f"level_{data['level']}_character.json", "w") as file:
+                    json.dump(data, file, indent=4)
                 go_go = "no"
-        except ValueError and NameError:
+        except (ValueError, NameError, KeyError):
             print("invalid input")
 
-
-        with open(f"level_{data['level']}_character.json", "w") as file:
-            json.dump(data, file, indent=4)
-        print("invalid input")
-    except ValueError and NameError:
+    except (ValueError, NameError, KeyError):
         print("invalid input")
